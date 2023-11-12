@@ -51,6 +51,8 @@ Route::group("/user", function () {
 
     Route::post("/edit","user/edit");
 
+    Route::post("/transfer","user/transfer");
+
 })->middleware(JwtMiddleware::class);
 
 Route::group("/invite",function(){

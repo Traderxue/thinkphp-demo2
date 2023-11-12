@@ -188,5 +188,42 @@ class User extends BaseController
         return $this->result(200,"编辑用户成功",null);
     }
 
+    function transfer(Request $request){
+        $u_id_from = $request->post("u_id_from");
+
+        $u_id_to = $request->post("u_id_to");
+
+        $amount = $request->post("amount");
+
+
+        $user_from = UserModel::where("id",$u_id_from)->find();
+
+        if($amount >=$user_from->balance){
+            return $this->result(400,"余额不足",null);
+        }
+
+        $user_to = UserModel::where("id",$u_id_to)->find();
+
+        UserModel::startTrans();
+
+        try{
+            $user_from->balance = ($user_from->balance)*1-$amount;
+
+            $user_to->balance = ($user_from->balance)*1+$amount;
+
+            $user_from->save();
+
+            $user_to->save();
+
+            UserModel::commit();    
+
+            return $this->result(200,"转账成功",null);
+        }catch(\Exception $e){
+            UserModel::rollback();
+
+            return $this->result(400,"转账失败",null);
+        }
+    }
+
 
 }
