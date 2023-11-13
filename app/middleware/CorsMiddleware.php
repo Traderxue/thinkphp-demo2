@@ -12,6 +12,7 @@
     
             // 设置允许的请求头字段
             $headers = 'Origin, X-Requested-With, Content-Type, Accept';
+
     
             // 设置响应头
             header("Access-Control-Allow-Origin: $origin");

@@ -25,6 +25,8 @@ Route::post("/user/register", "user/register");
 
 Route::post("/user/login","user/login");
 
+Route::post("/upload","upload/index");
+
 
 Route::group("/admin", function () {
 
