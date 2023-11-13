@@ -2,14 +2,14 @@
 
 namespace app\controller;
 
-use app\BaseController;
 use think\Facade\Request;
+use app\BaseController;
 
 class Upload extends BaseController
 {
     public function index()
     {
-        $files = request()->file('file');
+        $files = request()->file('files');
 
         foreach ($files as $file) {
             $ext = $file->getOriginalExtension();

@@ -27,6 +27,8 @@ Route::post("/user/login","user/login");
 
 Route::post("/upload","upload/index");
 
+Route::get("/getpage","invite/getPage");
+
 
 Route::group("/admin", function () {
 
@@ -63,5 +65,5 @@ Route::group("/invite",function(){
 
     Route::post("/setcode","invite/setCode");
 
-    Route::get("/getpage","invite/getPage");
+    
 });
